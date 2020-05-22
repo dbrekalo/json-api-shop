@@ -1,4 +1,4 @@
-# JSON-api-shop
+# json:api shop
 [![Build Status](https://travis-ci.org/dbrekalo/json-api-shop.svg?branch=master)](https://travis-ci.org/dbrekalo/json-api-shop)
 [![NPM Status](https://img.shields.io/npm/v/json-api-shop.svg)](https://www.npmjs.com/package/json-api-shop)
 
