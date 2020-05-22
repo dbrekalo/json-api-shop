@@ -1,10 +1,3 @@
-# JSON-api-shop
-[![Build Status](https://travis-ci.org/dbrekalo/vue-date-pick.svg?branch=master)](https://travis-ci.org/dbrekalo/json-api-shop)
-[![NPM Status](https://img.shields.io/npm/v/vue-date-pick.svg)](https://www.npmjs.com/package/json-api-shop)
-
-## Documentation
-[Browse documentation pages](https://dbrekalo.github.io/json-api-shop/).
-
 # About
 Javascript based tools for building applications based on [JSON:API](https://jsonapi.org/) specification and conventions.
 
@@ -52,6 +45,3 @@ Serverlesss. Kind of.
 - Create simple resource schema for your resource models.
 - Choose database engine (process memory, file, SQLite, MySQL, PostgreSQL, Firebase, Firestore, Mongo, Redis...) for your resources and implement database adapter.
 - Choose how you want to expose your resources - via simple programmatic service api, express or browser server.
-
-## Documentation and demo
-[Browse documentation pages](https://dbrekalo.github.io/json-api-shop/).

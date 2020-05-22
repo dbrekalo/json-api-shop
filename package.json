@@ -1,0 +1,81 @@
+{
+  "name": "json-api-shop",
+  "version": "0.1.0",
+  "description": "Javascript based tools for building applications based on json:api specification and conventions",
+  "homepage": "https://dbrekalo.github.io/json-api-shop/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dbrekalo/json-api-shop"
+  },
+  "main": "index.js",
+  "license": "MIT",
+  "files": [
+    "/adapters",
+    "/lib",
+    "/servers",
+    "/service"
+  ],
+  "keywords": [
+    "json-api",
+    "json",
+    "api"
+  ],
+  "scripts": {
+    "docs:dev": "vuepress dev documentation",
+    "docs:build": "vuepress build documentation",
+    "build": "npm run docs:build",
+    "lint": "npm run lint:lib && npm run lint:spec",
+    "lint:lib": "eslint adapters/** lib/** service/** servers/** -c .eslintrc.js --color",
+    "lint:spec": "eslint spec/** -c .eslintrc-spec.js --color",
+    "test": "npm run lint && npm run test:browser && npm run test:server",
+    "test:browser": "BABEL_ENV=test karma start --single-run --browsers ChromeHeadless",
+    "test:server": "nyc mocha ./spec/express-server.spec.js",
+    "watch:test:server": "nyc mocha -w ./spec/express-server.spec.js",
+    "watch:test:browser": "BABEL_ENV=test karma start --browsers ChromeHeadless"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mout": "^1.2.2",
+    "multer": "^1.4.2",
+    "pretender": "^3.4.1",
+    "qs": "^6.9.4",
+    "to-pascal-case": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "axios": "^0.19.2",
+    "babel-loader": "^8.0.0",
+    "babel-plugin-istanbul": "^5.2.0",
+    "chai": "^4.2.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-standard": "^4.0.0",
+    "json-api-resource": "^0.7.0",
+    "karma": "^5.0.4",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-coverage": "^2.0.2",
+    "karma-mocha": "^2.0.1",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-spec-reporter": "0.0.32",
+    "karma-webpack": "^4.0.2",
+    "mocha": "^7.1.2",
+    "node-sass": "^4.14.1",
+    "nyc": "^15.0.1",
+    "sass-loader": "^8.0.2",
+    "supertest": "^4.0.2",
+    "vuepress": "^1.5.0",
+    "webpack": "^4.25.1"
+  },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "last 4 versions",
+    "Chrome >= 30",
+    "Firefox >= 30",
+    "Explorer >= 9"
+  ]
+}

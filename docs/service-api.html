@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Service api | JSON api shop</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    
+    <meta name="description" content="JSON api servers, services and database adapters">
+    <link rel="preload" href="/json-api-shop/assets/css/0.styles.717afe66.css" as="style"><link rel="preload" href="/json-api-shop/assets/js/app.b2faaa33.js" as="script"><link rel="preload" href="/json-api-shop/assets/js/2.34cd2bf9.js" as="script"><link rel="preload" href="/json-api-shop/assets/js/13.eae1c948.js" as="script"><link rel="prefetch" href="/json-api-shop/assets/js/10.69abc918.js"><link rel="prefetch" href="/json-api-shop/assets/js/11.ecb717f5.js"><link rel="prefetch" href="/json-api-shop/assets/js/12.0020240e.js"><link rel="prefetch" href="/json-api-shop/assets/js/3.b4a332dc.js"><link rel="prefetch" href="/json-api-shop/assets/js/4.87ca859a.js"><link rel="prefetch" href="/json-api-shop/assets/js/5.2f1b41f0.js"><link rel="prefetch" href="/json-api-shop/assets/js/6.7e8c4991.js"><link rel="prefetch" href="/json-api-shop/assets/js/7.52c935a8.js"><link rel="prefetch" href="/json-api-shop/assets/js/8.e83e3ab7.js"><link rel="prefetch" href="/json-api-shop/assets/js/9.a4e9d161.js">
+    <link rel="stylesheet" href="/json-api-shop/assets/css/0.styles.717afe66.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/json-api-shop/" class="home-link router-link-active"><!----> <span class="site-name">JSON api shop</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/json-api-shop/about.html" class="nav-link">
+  Documentation
+</a></div><div class="nav-item"><a href="https://github.com/dbrekalo/json-api-shop" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/json-api-shop/about.html" class="nav-link">
+  Documentation
+</a></div><div class="nav-item"><a href="https://github.com/dbrekalo/json-api-shop" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/json-api-shop/about.html" class="sidebar-link">About</a></li><li><a href="/json-api-shop/getting-started.html" class="sidebar-link">Getting started</a></li><li><a href="/json-api-shop/resource-schema.html" class="sidebar-link">Resource schema</a></li><li><a href="/json-api-shop/service-api.html" aria-current="page" class="active sidebar-link">Service api</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/json-api-shop/service-api.html#creating-service" class="sidebar-link">Creating service</a></li><li class="sidebar-sub-header"><a href="/json-api-shop/service-api.html#available-methods" class="sidebar-link">Available methods</a></li><li class="sidebar-sub-header"><a href="/json-api-shop/service-api.html#getting-resource-detail" class="sidebar-link">Getting resource detail</a></li><li class="sidebar-sub-header"><a href="/json-api-shop/service-api.html#getting-resource-list" class="sidebar-link">Getting resource list</a></li><li class="sidebar-sub-header"><a href="/json-api-shop/service-api.html#filtering-resource-list" class="sidebar-link">Filtering resource list</a></li><li class="sidebar-sub-header"><a href="/json-api-shop/service-api.html#sorting-resource-list" class="sidebar-link">Sorting resource list</a></li><li class="sidebar-sub-header"><a href="/json-api-shop/service-api.html#paginating-resource-list" class="sidebar-link">Paginating resource list</a></li><li class="sidebar-sub-header"><a href="/json-api-shop/service-api.html#adding-sparse-fieldsets" class="sidebar-link">Adding sparse fieldsets</a></li><li class="sidebar-sub-header"><a href="/json-api-shop/service-api.html#including-related-resources" class="sidebar-link">Including related resources</a></li><li class="sidebar-sub-header"><a href="/json-api-shop/service-api.html#combined-resource-query" class="sidebar-link">Combined resource query</a></li><li class="sidebar-sub-header"><a href="/json-api-shop/service-api.html#creating-resource" class="sidebar-link">Creating resource</a></li><li class="sidebar-sub-header"><a href="/json-api-shop/service-api.html#updating-resource" class="sidebar-link">Updating resource</a></li><li class="sidebar-sub-header"><a href="/json-api-shop/service-api.html#deleting-resource" class="sidebar-link">Deleting resource</a></li></ul></li><li><a href="/json-api-shop/database-adapters.html" class="sidebar-link">Database adapters</a></li><li><a href="/json-api-shop/express-server.html" class="sidebar-link">Express server</a></li><li><a href="/json-api-shop/browser-server.html" class="sidebar-link">Browser server</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="service-api"><a href="#service-api" class="header-anchor">#</a> Service api</h1> <p>Service api is core api through which resources are queried and manipulated.
+Common set of CRUD methods are used to create, read, update and delete resources.
+It ensures that client request is properly formatted to json:api standards before being forwarded to database adapter.</p> <p>Server implementations (Express and browser) are thin layers built on top of service api.
+Servers parse parameters and intent from http requests and forwards them to service api calls.</p> <p>Service api can be used standalone, outside of server implementation.</p> <h2 id="creating-service"><a href="#creating-service" class="header-anchor">#</a> Creating service</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> ServiceApi <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'json-api-shop/service'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> MemoryAdapter <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'json-api-shop/adapters/memory'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> service <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ServiceApi</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    databaseAdapter<span class="token operator">:</span> MemoryAdapter<span class="token punctuation">,</span>
+    resources<span class="token operator">:</span> schema
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>Constructor can be called with:</p> <ul><li><code>databaseAdapter</code>: database adapter instance or constructor function</li> <li><code>resources</code>: resources schema</li> <li><code>validationErrorField</code>: error field name where validation messages are written to (default <code>'detail'</code>)</li> <li><code>pagination</code>: pagination configuration
+<ul><li>offset based (default) <code>{strategy: 'offsetBased', offsetKey: 'offset', limitKey: 'limit'}</code></li> <li>page based <code>{strategy: 'pageBased', numberKey: 'number', limitKey: 'size'}</code></li></ul></li></ul> <h2 id="available-methods"><a href="#available-methods" class="header-anchor">#</a> Available methods</h2> <p>All service methods return <code>Promise</code> that can be resolved with json:api formatted resource
+representation or rejected with json:api errors.</p> <ul><li><code>get</code>: query resources</li> <li><code>create</code>: create resource</li> <li><code>update</code>: update resource</li> <li><code>delete</code>: delete resource</li></ul> <h2 id="getting-resource-detail"><a href="#getting-resource-detail" class="header-anchor">#</a> Getting resource detail</h2> <div class="language-js extra-class"><pre class="language-js"><code>service<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">'article'</span><span class="token punctuation">,</span>
+    id<span class="token operator">:</span> <span class="token string">'1'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>
+    <span class="token parameter">article</span> <span class="token operator">=&gt;</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>article<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="getting-resource-list"><a href="#getting-resource-list" class="header-anchor">#</a> Getting resource list</h2> <div class="language-js extra-class"><pre class="language-js"><code>service<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">'article'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>
+    <span class="token parameter">articles</span> <span class="token operator">=&gt;</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>articles<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="filtering-resource-list"><a href="#filtering-resource-list" class="header-anchor">#</a> Filtering resource list</h2> <div class="language-js extra-class"><pre class="language-js"><code>service<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">'article'</span><span class="token punctuation">,</span>
+    query<span class="token operator">:</span> <span class="token punctuation">{</span>
+        filter<span class="token operator">:</span> <span class="token punctuation">{</span>
+            title<span class="token operator">:</span> <span class="token string">'Article'</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="sorting-resource-list"><a href="#sorting-resource-list" class="header-anchor">#</a> Sorting resource list</h2> <div class="language-js extra-class"><pre class="language-js"><code>service<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">'article'</span><span class="token punctuation">,</span>
+    query<span class="token operator">:</span> <span class="token punctuation">{</span>
+        sort<span class="token operator">:</span> <span class="token string">'-title'</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="paginating-resource-list"><a href="#paginating-resource-list" class="header-anchor">#</a> Paginating resource list</h2> <div class="language-js extra-class"><pre class="language-js"><code>service<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">'article'</span><span class="token punctuation">,</span>
+    query<span class="token operator">:</span> <span class="token punctuation">{</span>
+        page<span class="token operator">:</span> <span class="token punctuation">{</span>
+            offset<span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+            limit<span class="token operator">:</span> <span class="token number">10</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="adding-sparse-fieldsets"><a href="#adding-sparse-fieldsets" class="header-anchor">#</a> Adding sparse fieldsets</h2> <div class="language-js extra-class"><pre class="language-js"><code>service<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">'article'</span><span class="token punctuation">,</span>
+    query<span class="token operator">:</span> <span class="token punctuation">{</span>
+        fields<span class="token operator">:</span> <span class="token punctuation">{</span>
+            article<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'title'</span><span class="token punctuation">]</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="including-related-resources"><a href="#including-related-resources" class="header-anchor">#</a> Including related resources</h2> <div class="language-js extra-class"><pre class="language-js"><code>service<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">'article'</span><span class="token punctuation">,</span>
+    query<span class="token operator">:</span> <span class="token punctuation">{</span>
+        include<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'author'</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="combined-resource-query"><a href="#combined-resource-query" class="header-anchor">#</a> Combined resource query</h2> <div class="language-js extra-class"><pre class="language-js"><code>service<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">'article'</span><span class="token punctuation">,</span>
+    query<span class="token operator">:</span> <span class="token punctuation">{</span>
+        filter<span class="token operator">:</span> <span class="token punctuation">{</span>
+            title<span class="token operator">:</span> <span class="token string">'Article'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        sort<span class="token operator">:</span> <span class="token string">'-title'</span><span class="token punctuation">,</span>
+        fields<span class="token operator">:</span> <span class="token punctuation">{</span>
+            article<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'title'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            user<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'email'</span><span class="token punctuation">]</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        include<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'author'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        page<span class="token operator">:</span> <span class="token punctuation">{</span>
+            offset<span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+            limit<span class="token operator">:</span> <span class="token number">10</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="creating-resource"><a href="#creating-resource" class="header-anchor">#</a> Creating resource</h2> <div class="language-js extra-class"><pre class="language-js"><code>service<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">'article'</span><span class="token punctuation">,</span>
+    attributes<span class="token operator">:</span> <span class="token punctuation">{</span>
+        title<span class="token operator">:</span> <span class="token string">'New title'</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">article</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>article<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="updating-resource"><a href="#updating-resource" class="header-anchor">#</a> Updating resource</h2> <div class="language-js extra-class"><pre class="language-js"><code>service<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">'article'</span><span class="token punctuation">,</span>
+    id<span class="token operator">:</span> <span class="token string">'1'</span><span class="token punctuation">,</span>
+    attributes<span class="token operator">:</span> <span class="token punctuation">{</span>
+        title<span class="token operator">:</span> <span class="token string">'Updated title'</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">article</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>article<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="deleting-resource"><a href="#deleting-resource" class="header-anchor">#</a> Deleting resource</h2> <div class="language-js extra-class"><pre class="language-js"><code>service<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">'article'</span><span class="token punctuation">,</span>
+    id<span class="token operator">:</span> <span class="token string">'1'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/json-api-shop/resource-schema.html" class="prev">
+        Resource schema
+      </a></span> <span class="next"><a href="/json-api-shop/database-adapters.html">
+        Database adapters
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/json-api-shop/assets/js/app.b2faaa33.js" defer></script><script src="/json-api-shop/assets/js/2.34cd2bf9.js" defer></script><script src="/json-api-shop/assets/js/13.eae1c948.js" defer></script>
+  </body>
+</html>

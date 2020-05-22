@@ -1,0 +1,69 @@
+#app .custom-home-page .page {
+    padding-bottom: 0;
+}
+
+#app .custom-home-page .page-edit,
+#app .custom-home-page .page-nav {
+    display: none;
+}
+
+@media screen and (max-width: 719px) {
+    #app .search-box input {
+        font-size: 1rem;
+    }
+
+    #app .custom-home-page .theme-default-content {
+        max-width: none; padding: 0; margin: 0;
+    }
+}
+
+@media screen and (min-width: 720px) {
+    #app .search-box {
+        margin-right: 1.5rem;
+    }
+
+    #app .theme-container .navbar {
+        background: #f5f5f5; transition: padding 0.2s;
+    }
+
+    #app .theme-default-content {
+        padding-top: 3em;
+    }
+
+    #app .navbar .links {
+        transition: top 0.2s; background-color: transparent;
+    }
+
+    #app .custom-home-page .navbar {
+        padding: 26px 24px 0 40px;
+    }
+
+    #app .custom-home-page .theme-default-content {
+        max-width: none; padding: 0; margin: 0;
+    }
+
+    #app .custom-home-page .navbar .links {
+        top: 25px;
+    }
+
+    #app .custom-home-page > .navbar {
+        position: absolute;
+        border-bottom-color: transparent;
+    }
+
+    #app .navbar > a {
+        position: relative;
+        transition: left 0.2s, top 0.2s;
+    }
+
+    #app .navbar .site-name {
+        display: block; position: relative;
+        padding-left: 45px; margin-left: -15px;
+    }
+
+    #app .navbar .site-name:before {
+        position: absolute; content: ''; left: 0; top: 3px; width: 40px; height: 40px;
+        background: transparent url('/json-api-shop/logo.svg') no-repeat center;
+        background-size: 45px;
+    }
+}

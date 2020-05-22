@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Express server | JSON api shop</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    
+    <meta name="description" content="JSON api servers, services and database adapters">
+    <link rel="preload" href="/json-api-shop/assets/css/0.styles.717afe66.css" as="style"><link rel="preload" href="/json-api-shop/assets/js/app.b2faaa33.js" as="script"><link rel="preload" href="/json-api-shop/assets/js/2.34cd2bf9.js" as="script"><link rel="preload" href="/json-api-shop/assets/js/10.69abc918.js" as="script"><link rel="prefetch" href="/json-api-shop/assets/js/11.ecb717f5.js"><link rel="prefetch" href="/json-api-shop/assets/js/12.0020240e.js"><link rel="prefetch" href="/json-api-shop/assets/js/13.eae1c948.js"><link rel="prefetch" href="/json-api-shop/assets/js/3.b4a332dc.js"><link rel="prefetch" href="/json-api-shop/assets/js/4.87ca859a.js"><link rel="prefetch" href="/json-api-shop/assets/js/5.2f1b41f0.js"><link rel="prefetch" href="/json-api-shop/assets/js/6.7e8c4991.js"><link rel="prefetch" href="/json-api-shop/assets/js/7.52c935a8.js"><link rel="prefetch" href="/json-api-shop/assets/js/8.e83e3ab7.js"><link rel="prefetch" href="/json-api-shop/assets/js/9.a4e9d161.js">
+    <link rel="stylesheet" href="/json-api-shop/assets/css/0.styles.717afe66.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/json-api-shop/" class="home-link router-link-active"><!----> <span class="site-name">JSON api shop</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/json-api-shop/about.html" class="nav-link">
+  Documentation
+</a></div><div class="nav-item"><a href="https://github.com/dbrekalo/json-api-shop" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/json-api-shop/about.html" class="nav-link">
+  Documentation
+</a></div><div class="nav-item"><a href="https://github.com/dbrekalo/json-api-shop" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/json-api-shop/about.html" class="sidebar-link">About</a></li><li><a href="/json-api-shop/getting-started.html" class="sidebar-link">Getting started</a></li><li><a href="/json-api-shop/resource-schema.html" class="sidebar-link">Resource schema</a></li><li><a href="/json-api-shop/service-api.html" class="sidebar-link">Service api</a></li><li><a href="/json-api-shop/database-adapters.html" class="sidebar-link">Database adapters</a></li><li><a href="/json-api-shop/express-server.html" aria-current="page" class="active sidebar-link">Express server</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/json-api-shop/express-server.html#server-options" class="sidebar-link">Server options</a></li><li class="sidebar-sub-header"><a href="/json-api-shop/express-server.html#integrating-with-existing-express-application" class="sidebar-link">Integrating with existing Express application</a></li></ul></li><li><a href="/json-api-shop/browser-server.html" class="sidebar-link">Browser server</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="express-server"><a href="#express-server" class="header-anchor">#</a> Express server</h1> <p>Express node.js server comes bundled and preconfigured with all route and error handlers.</p> <h3 id="simple-server-example"><a href="#simple-server-example" class="header-anchor">#</a> Simple server example</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> ExpressServer <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'json-api-shop/servers/express'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> MemoryAdapter <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'json-api-shop/adapters/memory'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> server <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ExpressServer</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    port<span class="token operator">:</span> <span class="token number">3000</span><span class="token punctuation">,</span>
+    databaseAdapter<span class="token operator">:</span> MemoryAdapter<span class="token punctuation">,</span>
+    resources<span class="token operator">:</span> schema
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+server<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/* Server ready to process article requests
+GET /article      (resource listing)
+GET /article/1    (resource detail)
+PUT /article/1    (resource update)
+POST /article     (resource create)
+DELETE /article/1 (resource delete)
+*/</span>
+</code></pre></div><h2 id="server-options"><a href="#server-options" class="header-anchor">#</a> Server options</h2> <p>Server constructor options include:</p> <ul><li><code>databaseAdapter</code>: database adapter instance or constructor function</li> <li><code>baseUrl</code>: base server url (default &quot;/&quot;&quot;)</li> <li><code>port</code>: server port (default 3000)</li> <li><code>resources</code>: resources schema</li> <li><code>useCors</code>: to setup cors express middleware (default <code>false</code>)</li> <li><code>updateMethod</code>: http method (<code>String</code>or <code>Array</code>) used for resource update</li> <li><code>service</code>: user api service instance</li> <li><code>validationErrorStatusCode</code>: http status code for validation errors</li> <li><code>beforeServerStart</code>: callback called before server listen</li> <li><code>afterServerStart</code>: callback called after server listen</li></ul> <h3 id="custom-resource-url"><a href="#custom-resource-url" class="header-anchor">#</a> Custom resource url</h3> <p>Custom resource url slug can be set in schema for given resource.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> schema <span class="token operator">=</span> <span class="token punctuation">{</span>
+    article<span class="token operator">:</span> <span class="token punctuation">{</span>
+        urlSlug<span class="token operator">:</span> <span class="token string">'articles'</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="disabling-resource-routes"><a href="#disabling-resource-routes" class="header-anchor">#</a> Disabling resource routes</h3> <p>Resource routes can be disabled via following schema properties.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> schema <span class="token operator">=</span> <span class="token punctuation">{</span>
+    article<span class="token operator">:</span> <span class="token punctuation">{</span>
+        hasListRoute<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>   <span class="token comment">// disables GET /article</span>
+        hasDetailRoute<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// disables GET /article/:id</span>
+        hasUpdateRoute<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// disables PUT /article/:id</span>
+        hasCreateRoute<span class="token operator">:</span> <span class="token boolean">false</span>  <span class="token comment">// disables POST /article</span>
+        hasDeleteRoute<span class="token operator">:</span> <span class="token boolean">false</span>  <span class="token comment">// disables DELETE /article/:id</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="extending-server"><a href="#extending-server" class="header-anchor">#</a> Extending server</h3> <p>All server methods can be overridden.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> ExpressServer <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'json-api-shop/servers/express'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> MyServer <span class="token operator">=</span> ExpressServer<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token operator">...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="integrating-with-existing-express-application"><a href="#integrating-with-existing-express-application" class="header-anchor">#</a> Integrating with existing Express application</h2> <p>Server object exposes following methods for easy integration into existing application:</p> <ul><li><code>setupMiddleware</code></li> <li><code>setupRoutes</code></li> <li><code>setupErrorHandling</code></li></ul> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> express <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'express'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token function">express</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> ExpressServer <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'json-api-shop/servers/express'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> MemoryAdapter <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'json-api-shop/adapters/memory'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// create server</span>
+<span class="token keyword">const</span> apiServer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ExpressServer</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    databaseAdapter<span class="token operator">:</span> MemoryAdapter<span class="token punctuation">,</span>
+    resources<span class="token operator">:</span> schema
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// your application middleware</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token operator">...</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// add json api server middleware (optional)</span>
+apiServer<span class="token punctuation">.</span><span class="token function">setupMiddleware</span><span class="token punctuation">(</span>app<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// your application routes</span>
+app<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token operator">...</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token operator">...</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// add json api server routes</span>
+apiServer<span class="token punctuation">.</span><span class="token function">setupRoutes</span><span class="token punctuation">(</span>app<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// add json api error handler</span>
+apiServer<span class="token punctuation">.</span><span class="token function">setupErrorHandling</span><span class="token punctuation">(</span>app<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// your error handler</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token operator">...</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/json-api-shop/database-adapters.html" class="prev">
+        Database adapters
+      </a></span> <span class="next"><a href="/json-api-shop/browser-server.html">
+        Browser server
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/json-api-shop/assets/js/app.b2faaa33.js" defer></script><script src="/json-api-shop/assets/js/2.34cd2bf9.js" defer></script><script src="/json-api-shop/assets/js/10.69abc918.js" defer></script>
+  </body>
+</html>

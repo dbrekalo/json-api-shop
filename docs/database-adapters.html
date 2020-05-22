@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Database adapters | JSON api shop</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    
+    <meta name="description" content="JSON api servers, services and database adapters">
+    <link rel="preload" href="/json-api-shop/assets/css/0.styles.717afe66.css" as="style"><link rel="preload" href="/json-api-shop/assets/js/app.b2faaa33.js" as="script"><link rel="preload" href="/json-api-shop/assets/js/2.34cd2bf9.js" as="script"><link rel="preload" href="/json-api-shop/assets/js/9.a4e9d161.js" as="script"><link rel="prefetch" href="/json-api-shop/assets/js/10.69abc918.js"><link rel="prefetch" href="/json-api-shop/assets/js/11.ecb717f5.js"><link rel="prefetch" href="/json-api-shop/assets/js/12.0020240e.js"><link rel="prefetch" href="/json-api-shop/assets/js/13.eae1c948.js"><link rel="prefetch" href="/json-api-shop/assets/js/3.b4a332dc.js"><link rel="prefetch" href="/json-api-shop/assets/js/4.87ca859a.js"><link rel="prefetch" href="/json-api-shop/assets/js/5.2f1b41f0.js"><link rel="prefetch" href="/json-api-shop/assets/js/6.7e8c4991.js"><link rel="prefetch" href="/json-api-shop/assets/js/7.52c935a8.js"><link rel="prefetch" href="/json-api-shop/assets/js/8.e83e3ab7.js">
+    <link rel="stylesheet" href="/json-api-shop/assets/css/0.styles.717afe66.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/json-api-shop/" class="home-link router-link-active"><!----> <span class="site-name">JSON api shop</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/json-api-shop/about.html" class="nav-link">
+  Documentation
+</a></div><div class="nav-item"><a href="https://github.com/dbrekalo/json-api-shop" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/json-api-shop/about.html" class="nav-link">
+  Documentation
+</a></div><div class="nav-item"><a href="https://github.com/dbrekalo/json-api-shop" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/json-api-shop/about.html" class="sidebar-link">About</a></li><li><a href="/json-api-shop/getting-started.html" class="sidebar-link">Getting started</a></li><li><a href="/json-api-shop/resource-schema.html" class="sidebar-link">Resource schema</a></li><li><a href="/json-api-shop/service-api.html" class="sidebar-link">Service api</a></li><li><a href="/json-api-shop/database-adapters.html" aria-current="page" class="active sidebar-link">Database adapters</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/json-api-shop/database-adapters.html#memory-adapter" class="sidebar-link">Memory adapter</a></li><li class="sidebar-sub-header"><a href="/json-api-shop/database-adapters.html#creating-your-adapters" class="sidebar-link">Creating your adapters</a></li><li class="sidebar-sub-header"><a href="/json-api-shop/database-adapters.html#localstorage-adapter-example" class="sidebar-link">localStorage adapter example</a></li></ul></li><li><a href="/json-api-shop/express-server.html" class="sidebar-link">Express server</a></li><li><a href="/json-api-shop/browser-server.html" class="sidebar-link">Browser server</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="database-adapters"><a href="#database-adapters" class="header-anchor">#</a> Database adapters</h1> <p>Database adapters are objects responsible for communication between service and database layer.
+They transform resource queries and instructions to api used by your application database engine.</p> <h2 id="memory-adapter"><a href="#memory-adapter" class="header-anchor">#</a> Memory adapter</h2> <p>Database adapter with &quot;in memory&quot; storage comes bundled with library. Resources are manipulated
+with in process memory (server process in Express server implementation or browser memory in
+browser implementations).</p> <p>Memory adapter is preconfigured with generic methods for creating, updating and deleting resources.
+It can be used with no configuration effort outside of standard resource schema definition.</p> <div class="custom-block warning"><p class="custom-block-title">WARNING</p> <p>Memory adapter is not suited for production usage and / or environments with multiple running processes.</p></div> <p>Custom user instances of memory adapter can be passed to server or service constructors.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> MemoryAdapter <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'json-api-shop/adapters/memory'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ExpressServer <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'json-api-shop/servers/express'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> memoryAdapter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MemoryAdapter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    resources<span class="token operator">:</span> schema
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> server <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ExpressServer</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    port<span class="token operator">:</span> <span class="token number">3000</span><span class="token punctuation">,</span>
+    databaseAdapter<span class="token operator">:</span> memoryAdapter<span class="token punctuation">,</span>
+    resources<span class="token operator">:</span> schema
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="creating-your-adapters"><a href="#creating-your-adapters" class="header-anchor">#</a> Creating your adapters</h2> <p>Database adapter api can be extended to work with different database engines.
+Custom adapters need to implement CRUD-like methods explained and examined
+in simplified example bellow:</p> <h3 id="extending-base-adapter"><a href="#extending-base-adapter" class="header-anchor">#</a> Extending base adapter</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// our adapter will extend bundled base adapter</span>
+<span class="token keyword">const</span> BaseAdapter <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'json-api-shop/adapters/base'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// we will use simple storage model</span>
+<span class="token keyword">const</span> database <span class="token operator">=</span> <span class="token punctuation">{</span>
+    article<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+        id<span class="token operator">:</span> <span class="token string">'1'</span>
+        type<span class="token operator">:</span> <span class="token string">'article'</span><span class="token punctuation">,</span>
+        attributes<span class="token operator">:</span> <span class="token punctuation">{</span>title<span class="token operator">:</span> <span class="token string">'Title 1'</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// our adapter class implementation</span>
+<span class="token keyword">const</span> MyAdapter <span class="token operator">=</span> BaseAdapter<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+
+    <span class="token function">getResource</span><span class="token punctuation">(</span><span class="token parameter">type<span class="token punctuation">,</span> id<span class="token punctuation">,</span> query<span class="token punctuation">,</span> context</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// get single resource of requested type using id</span>
+        <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>storage<span class="token punctuation">[</span>type<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>
+            <span class="token parameter">resource</span> <span class="token operator">=&gt;</span> resource<span class="token punctuation">.</span>id <span class="token operator">===</span> id
+        <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function">getResourceCollection</span><span class="token punctuation">(</span><span class="token parameter">type<span class="token punctuation">,</span> idReferences<span class="token punctuation">,</span> query<span class="token punctuation">,</span> context</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// pick resources of requested type using idReferences (array)</span>
+        <span class="token comment">// and return then as collection (array)</span>
+        <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>storage<span class="token punctuation">[</span>type<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>
+            <span class="token parameter">resource</span> <span class="token operator">=&gt;</span> idReferences<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>resource<span class="token punctuation">.</span>id<span class="token punctuation">)</span>
+        <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function">queryResourceCollection</span><span class="token punctuation">(</span><span class="token parameter">type<span class="token punctuation">,</span> query<span class="token punctuation">,</span> context</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// applying query filters, sorts, pagination</span>
+        <span class="token comment">// and return resource collection (array)</span>
+        <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>storage<span class="token punctuation">[</span>type<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token operator">...</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function">updateResource</span><span class="token punctuation">(</span><span class="token parameter">type<span class="token punctuation">,</span> id<span class="token punctuation">,</span> data<span class="token punctuation">,</span> query<span class="token punctuation">,</span> context</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// update resource of requested type and id</span>
+        <span class="token comment">// with submitted data (attributes and relationships)</span>
+        <span class="token comment">// and return updated resource</span>
+        <span class="token keyword">const</span> resource <span class="token operator">=</span> storage<span class="token punctuation">[</span>type<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token operator">=&gt;</span> item<span class="token punctuation">.</span>id <span class="token operator">===</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        resource<span class="token punctuation">.</span>attributes <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token operator">...</span>resource<span class="token punctuation">.</span>attributes<span class="token punctuation">,</span> <span class="token operator">...</span>data<span class="token punctuation">.</span>attributes<span class="token punctuation">}</span><span class="token punctuation">;</span>
+        resource<span class="token punctuation">.</span>relationships <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token operator">...</span>resource<span class="token punctuation">.</span>relationships<span class="token punctuation">,</span> <span class="token operator">...</span>data<span class="token punctuation">.</span>relationships<span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>resource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function">createResource</span><span class="token punctuation">(</span><span class="token parameter">type<span class="token punctuation">,</span> data<span class="token punctuation">,</span> query<span class="token punctuation">,</span> context</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// create resource of requested type</span>
+        <span class="token comment">// with submitted data (attributes and relationships)</span>
+        <span class="token comment">// and return created resource</span>
+        <span class="token keyword">const</span> newResource <span class="token operator">=</span> <span class="token punctuation">{</span>id<span class="token operator">:</span> <span class="token function">randomId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> type<span class="token punctuation">,</span> <span class="token operator">...</span>data<span class="token punctuation">}</span><span class="token punctuation">;</span>
+        storage<span class="token punctuation">[</span>type<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>newResource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>resource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function">deleteResource</span><span class="token punctuation">(</span><span class="token parameter">type<span class="token punctuation">,</span> id<span class="token punctuation">,</span> query<span class="token punctuation">,</span> context</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// delete resource of requested type and id</span>
+        storage<span class="token punctuation">[</span>type<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token operator">=&gt;</span> item<span class="token punctuation">.</span>id <span class="token operator">!==</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p><code>Promise</code> is expected return type of all methods.</p> <p>As last arguments methods receive:</p> <ul><li><code>query</code>: <code>Object</code> containing resource query filters, sorts, fields and other query parameters</li> <li><code>context</code>: <code>Object</code> containing current running context (server request in server implementations)</li></ul> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>If working with in memory dataset like one in example above - usage of bundled memory adapter is advised.</p></div> <h3 id="extending-with-custom-resource-methods"><a href="#extending-with-custom-resource-methods" class="header-anchor">#</a> Extending with custom resource methods</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> BaseAdapter <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'json-api-shop/adapters/base'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> MyAdapter <span class="token operator">=</span> BaseAdapter<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+
+    <span class="token function">getArticleResource</span><span class="token punctuation">(</span><span class="token parameter">id<span class="token punctuation">,</span> query<span class="token punctuation">,</span> context</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// get single article resource using id</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function">getArticleResourceCollection</span><span class="token punctuation">(</span><span class="token parameter">idReferences<span class="token punctuation">,</span> query<span class="token punctuation">,</span> context</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// pick articles using requested idReferences (array)</span>
+        <span class="token comment">// and return then as collection (array)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function">queryArticleResourceCollection</span><span class="token punctuation">(</span><span class="token parameter">query<span class="token punctuation">,</span> context</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// applying query filters, sorts, pagination</span>
+        <span class="token comment">// and return articles collection (array)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function">updateArticleResource</span><span class="token punctuation">(</span><span class="token parameter">id<span class="token punctuation">,</span> data<span class="token punctuation">,</span> query<span class="token punctuation">,</span> context</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// update article with requested id</span>
+        <span class="token comment">// with submitted data (attributes and relationships)</span>
+        <span class="token comment">// and return updated article</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function">createArticleResource</span><span class="token punctuation">(</span><span class="token parameter">data<span class="token punctuation">,</span> query<span class="token punctuation">,</span> context</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// create article resource</span>
+        <span class="token comment">// with submitted data (attributes and relationships)</span>
+        <span class="token comment">// and return created article</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function">deleteArticleResource</span><span class="token punctuation">(</span><span class="token parameter">id<span class="token punctuation">,</span> query<span class="token punctuation">,</span> context</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// delete article resource with requested id</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="localstorage-adapter-example"><a href="#localstorage-adapter-example" class="header-anchor">#</a> localStorage adapter example</h2> <p>Simple database adapter with persisted dataset in browser localStorage is examined bellow.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> MemoryAdapter <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'json-api-shop/adapters/memory'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> LocalStorageAdapter <span class="token operator">=</span> MemoryAdapter<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token function">seed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> storedDataset <span class="token operator">=</span> localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'dataset'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>storedDataset<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>dataset <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>storedDataset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">callParent</span><span class="token punctuation">(</span><span class="token string">'seed'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">persistToStorage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function">persistToStorage</span><span class="token punctuation">(</span><span class="token parameter">dataset</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">'dataset'</span><span class="token punctuation">,</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>dataset<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/json-api-shop/service-api.html" class="prev">
+        Service api
+      </a></span> <span class="next"><a href="/json-api-shop/express-server.html">
+        Express server
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/json-api-shop/assets/js/app.b2faaa33.js" defer></script><script src="/json-api-shop/assets/js/2.34cd2bf9.js" defer></script><script src="/json-api-shop/assets/js/9.a4e9d161.js" defer></script>
+  </body>
+</html>
