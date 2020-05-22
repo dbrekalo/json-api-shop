@@ -1,6 +1,6 @@
 # JSON-api-shop
-[![Build Status](https://travis-ci.org/dbrekalo/vue-date-pick.svg?branch=master)](https://travis-ci.org/dbrekalo/json-api-shop)
-[![NPM Status](https://img.shields.io/npm/v/vue-date-pick.svg)](https://www.npmjs.com/package/json-api-shop)
+[![Build Status](https://travis-ci.org/dbrekalo/json-api-shop.svg?branch=master)](https://travis-ci.org/dbrekalo/json-api-shop)
+[![NPM Status](https://img.shields.io/npm/v/json-api-shop.svg)](https://www.npmjs.com/package/json-api-shop)
 
 ## Documentation
 [Browse documentation pages](https://dbrekalo.github.io/json-api-shop/).
