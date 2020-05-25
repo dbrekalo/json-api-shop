@@ -33,21 +33,22 @@ module.exports = typeFactory({
             useCors: true,
             updateMethod: ['put', 'patch', 'post'],
             validationErrorStatusCode: 409,
-            beforeServerStart: function() {},
-            afterServerStart: function(app, config) {
-                console.log('JSON api server started at localhost:' + config.port);
-            }
+            logServerStart: true
         };
 
     },
 
     start: function() {
 
-        var app = this.setupServer();
+        this.setupServer();
+
+        var app = this.app;
         var config = this.config;
 
         app.listen(config.port, function() {
-            config.afterServerStart(app, config);
+            if (config.logServerStart) {
+                console.log('Express json:api server started at port:' + config.port);
+            }
         });
 
         return this;
@@ -57,8 +58,6 @@ module.exports = typeFactory({
     setupServer: function() {
 
         var app = this.app = express();
-
-        this.config.beforeServerStart(app, this.config);
 
         this.setupMiddleware(app);
         this.setupRoutes(app);

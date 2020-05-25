@@ -49,7 +49,7 @@ Attributes and relationships from client request can be validated when resource 
 ```Function``` returning ```Promise``` successfully resolved or rejected with validation errors.
 Method is called with parameters:
 - ```data```: attributes and relationships payload from client request
-- ```method```: ```"edit"``` or ```"create"``` string
+- ```method```: ```"update"``` or ```"create"``` string
 - ```resource```: current database resource on edit, client payload merged with default fields on create
 - ```database```: current database instance
 - ```context```: current running context (request in server implementations)

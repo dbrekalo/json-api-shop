@@ -47,8 +47,8 @@ Server constructor options include:
 - ```service```: user api service instance
 - ```pretenderInstance```: existing pretender instance
 - ```validationErrorStatusCode```: http status code for validation errors
-- ```beforeServerStart```: callback called before server listen
-- ```afterServerStart```: callback called after server listen
+- ```logRequest```: log request to console
+- ```logResponse```: log response to console
 
 ### Custom resource url
 Custom resource url slug can be set in schema for given resource.

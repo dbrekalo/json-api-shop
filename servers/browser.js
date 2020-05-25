@@ -30,8 +30,8 @@ module.exports = typeFactory({
             resources: {},
             updateMethod: ['put', 'patch', 'post'],
             validationErrorStatusCode: 409,
-            beforeServerStart: function() {},
-            afterServerStart: function() {}
+            logRequest: false,
+            logResponse: false
         };
 
     },
@@ -51,7 +51,8 @@ module.exports = typeFactory({
 
     buildWrapperServer: function() {
 
-        var pretender = this.config.pretenderInstance || new Pretender();
+        var config = this.config;
+        var pretender = config.pretenderInstance || new Pretender();
         var errorHandler = this.getErrorHandler();
 
         var app = this.app = {
@@ -116,6 +117,21 @@ module.exports = typeFactory({
 
         });
 
+        if (config.logRequest) {
+            pretender.on('request', function(request) {
+                console.log(
+                    decodeURIComponent(request.url),
+                    request.requestBody
+                );
+            });
+        }
+
+        if (config.logResponse) {
+            pretender.on('response', function(response) {
+                console.log(response);
+            });
+        }
+
         return app;
 
     },
@@ -123,10 +139,7 @@ module.exports = typeFactory({
     setupServer: function() {
 
         var app = this.app = this.buildWrapperServer();
-
-        this.config.beforeServerStart(app, this.config);
         this.setupRoutes(app);
-        this.config.afterServerStart(app, this.config);
 
         return this;
 

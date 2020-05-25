@@ -32,8 +32,6 @@ Server constructor options include:
 - ```updateMethod```: http method (```String```or ```Array```) used for resource update
 - ```service```: user api service instance
 - ```validationErrorStatusCode```: http status code for validation errors
-- ```beforeServerStart```: callback called before server listen
-- ```afterServerStart```: callback called after server listen
 
 ### Custom resource url
 Custom resource url slug can be set in schema for given resource.
