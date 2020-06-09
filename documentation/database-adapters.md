@@ -68,8 +68,13 @@ const MyAdapter = BaseAdapter.extend({
 
     queryResourceCollection(type, query, context) {
         // applying query filters, sorts, pagination
-        // and return resource collection (array)
-        return Promise.resolve(storage[type].filter(...));
+        // and return resource collection (array) and meta data
+        return Promise.resolve(storage[type].filter(...)).then(data => {
+            return {
+                resources: data.resources,
+                meta: {total: data.totalCount}
+            }
+        });
     },
 
     updateResource(type, id, data, query, context) {
@@ -161,12 +166,12 @@ const LocalStorageAdapter = MemoryAdapter.extend({
         if (storedDataset) {
             this.dataset = JSON.parse(storedDataset);
         } else {
-            this.callParent('seed');
+            MemoryAdapter.prototype.seed.call(this);
             this.persistToStorage();
         }
     },
-    persistToStorage(dataset) {
-        localStorage.setItem('dataset', JSON.stringify(dataset));
+    persistToStorage() {
+        localStorage.setItem('dataset', JSON.stringify(this.dataset));
         return Promise.resolve();
     }
 })

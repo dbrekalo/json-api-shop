@@ -3,9 +3,9 @@ const MemoryAdapter = require('../adapters/memory');
 const resourceSchemaFactory = require('./resource-schema-factory');
 const assert = require('chai').assert;
 const {Model, Collection} = require('json-api-resource');
+// const log = obj => console.log(JSON.stringify(obj, null, 4));
 
 let service;
-// const log = obj => console.log(JSON.stringify(obj, null, 4));
 
 beforeEach(function() {
     service = new ServiceApi({
@@ -347,7 +347,7 @@ describe('JSON API Service ', () => {
 
     });
 
-    it('returns validation error on invalid update ', done => {
+    it('returns validation error on invalid update (1)', done => {
 
         service.update({
             type: 'article',
@@ -356,21 +356,56 @@ describe('JSON API Service ', () => {
                 title: ''
             }
         }).catch(error => {
-            assert.equal(error.errors[0].detail, 'Article title is mandatory');
+            assert.equal(error.errors[0].detail, 'Field minimum length is 2');
             done();
         });
 
     });
 
-    it('returns validation error on invalid create', () => {
+    it('returns validation error on invalid update (2)', done => {
 
-        return service.create({
+        service.update({
             type: 'article',
-            attributes: {
-                title: ''
+            id: '1',
+            relationships: {
+                author: {data: []},
+                tags: {data: null}
             }
         }).catch(error => {
-            assert.equal(error.errors[0].detail, 'Article title is mandatory');
+            assert.equal(error.errors[0].detail, 'Relationship not valid');
+            assert.equal(error.errors[1].detail, 'Relationship not valid');
+            done();
+        });
+
+    });
+
+    it('returns validation error on invalid update (3)', done => {
+
+        service.update({
+            type: 'article',
+            id: '1',
+            relationships: {
+                foo: {data: null}
+            }
+        }).catch(error => {
+            assert.equal(error.errors[0].detail, 'Field "foo" is not declared');
+            done();
+        });
+
+    });
+
+    it('returns validation error on invalid create', done => {
+
+        service.create({
+            type: 'article',
+            attributes: {
+                title: '',
+                published: null
+            }
+        }).catch(error => {
+            assert.equal(error.errors[0].detail, 'Field minimum length is 2');
+            assert.equal(error.errors[1].detail, 'Invalid field type');
+            done();
         });
 
     });

@@ -2,10 +2,11 @@ var isPlainObject = require('mout/lang/isPlainObject');
 var forOwn = require('mout/object/forOwn');
 var get = require('mout/object/get');
 var keys = require('mout/object/keys');
+var typeFactory = require('type-factory');
 var isDefined = require('../lib/is-defined');
 var wait = require('../lib/wait');
 var pickObject = require('../lib/pick-object');
-var typeFactory = require('../lib/type-factory');
+var errorFactory = require('../lib/error-factory');
 
 var ServiceApi = typeFactory({
 
@@ -42,8 +43,7 @@ var ServiceApi = typeFactory({
                 limitKey: 'limit'
             },
             resources: {},
-            waitTime: 0,
-            validationErrorField: 'detail'
+            waitTime: 0
         };
 
     },
@@ -110,24 +110,7 @@ var ServiceApi = typeFactory({
 
     createInputValidator: function() {
 
-        var messageField = this.config.validationErrorField;
-        var error = new Error('Invalid service parameters');
-        var errors = error.errors = [];
-
-        error.jsonApiErrorType = 'badRequest';
-
-        error.addError = function(message) {
-            var errorRow = {code: 'badRequest'};
-            errorRow[messageField] = message;
-            errors.push(errorRow);
-            return error;
-        };
-
-        error.report = function() {
-            return errors.length ? Promise.reject(error) : Promise.resolve();
-        };
-
-        return error;
+        return errorFactory.badRequest();
 
     },
 
@@ -137,7 +120,7 @@ var ServiceApi = typeFactory({
 
         if (!isPlainObject(userQuery)) {
             return this.createInputValidator().addError(
-                'Invalid service parameters'
+                'Invalid input parameters'
             ).report();
         }
 

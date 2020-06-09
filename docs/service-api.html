@@ -7,7 +7,7 @@
     <meta name="generator" content="VuePress 1.5.0">
     
     <meta name="description" content="JSON api servers, services and database adapters">
-    <link rel="preload" href="/json-api-shop/assets/css/0.styles.717afe66.css" as="style"><link rel="preload" href="/json-api-shop/assets/js/app.b9c774e0.js" as="script"><link rel="preload" href="/json-api-shop/assets/js/2.34cd2bf9.js" as="script"><link rel="preload" href="/json-api-shop/assets/js/13.ea35ceae.js" as="script"><link rel="prefetch" href="/json-api-shop/assets/js/10.89238811.js"><link rel="prefetch" href="/json-api-shop/assets/js/11.81c69f64.js"><link rel="prefetch" href="/json-api-shop/assets/js/12.f30f308e.js"><link rel="prefetch" href="/json-api-shop/assets/js/3.b4a332dc.js"><link rel="prefetch" href="/json-api-shop/assets/js/4.87ca859a.js"><link rel="prefetch" href="/json-api-shop/assets/js/5.2f1b41f0.js"><link rel="prefetch" href="/json-api-shop/assets/js/6.4945022e.js"><link rel="prefetch" href="/json-api-shop/assets/js/7.50ced4fb.js"><link rel="prefetch" href="/json-api-shop/assets/js/8.4f127456.js"><link rel="prefetch" href="/json-api-shop/assets/js/9.c16fd27d.js">
+    <link rel="preload" href="/json-api-shop/assets/css/0.styles.717afe66.css" as="style"><link rel="preload" href="/json-api-shop/assets/js/app.633ebab6.js" as="script"><link rel="preload" href="/json-api-shop/assets/js/2.34cd2bf9.js" as="script"><link rel="preload" href="/json-api-shop/assets/js/13.a1a7c6db.js" as="script"><link rel="prefetch" href="/json-api-shop/assets/js/10.9964d219.js"><link rel="prefetch" href="/json-api-shop/assets/js/11.64bf697b.js"><link rel="prefetch" href="/json-api-shop/assets/js/12.44f879a1.js"><link rel="prefetch" href="/json-api-shop/assets/js/3.b4a332dc.js"><link rel="prefetch" href="/json-api-shop/assets/js/4.87ca859a.js"><link rel="prefetch" href="/json-api-shop/assets/js/5.2f1b41f0.js"><link rel="prefetch" href="/json-api-shop/assets/js/6.fa8cf335.js"><link rel="prefetch" href="/json-api-shop/assets/js/7.6f8d9a9c.js"><link rel="prefetch" href="/json-api-shop/assets/js/8.751754f6.js"><link rel="prefetch" href="/json-api-shop/assets/js/9.f643b181.js">
     <link rel="stylesheet" href="/json-api-shop/assets/css/0.styles.717afe66.css">
   </head>
   <body>
@@ -29,7 +29,7 @@ Servers parse parameters and intent from http requests and forwards them to serv
     databaseAdapter<span class="token operator">:</span> MemoryAdapter<span class="token punctuation">,</span>
     resources<span class="token operator">:</span> schema
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre></div><p>Constructor can be called with:</p> <ul><li><code>databaseAdapter</code>: database adapter instance or constructor function</li> <li><code>resources</code>: resources schema</li> <li><code>validationErrorField</code>: error field name where validation messages are written to (default <code>'detail'</code>)</li> <li><code>pagination</code>: pagination configuration
+</code></pre></div><p>Constructor can be called with:</p> <ul><li><code>databaseAdapter</code>: database adapter instance or constructor function</li> <li><code>resources</code>: resources schema</li> <li><code>pagination</code>: pagination configuration
 <ul><li>offset based (default) <code>{strategy: 'offsetBased', offsetKey: 'offset', limitKey: 'limit'}</code></li> <li>page based <code>{strategy: 'pageBased', numberKey: 'number', limitKey: 'size'}</code></li></ul></li></ul> <h2 id="available-methods"><a href="#available-methods" class="header-anchor">#</a> Available methods</h2> <p>All service methods return <code>Promise</code> that can be resolved with json:api formatted resource
 representation or rejected with json:api errors.</p> <ul><li><code>get</code>: query resources</li> <li><code>create</code>: create resource</li> <li><code>update</code>: update resource</li> <li><code>delete</code>: delete resource</li></ul> <h2 id="getting-resource-detail"><a href="#getting-resource-detail" class="header-anchor">#</a> Getting resource detail</h2> <div class="language-js extra-class"><pre class="language-js"><code>service<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
     type<span class="token operator">:</span> <span class="token string">'article'</span><span class="token punctuation">,</span>
@@ -127,6 +127,6 @@ representation or rejected with json:api errors.</p> <ul><li><code>get</code>: q
       </a>
       →
     </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/json-api-shop/assets/js/app.b9c774e0.js" defer></script><script src="/json-api-shop/assets/js/2.34cd2bf9.js" defer></script><script src="/json-api-shop/assets/js/13.ea35ceae.js" defer></script>
+    <script src="/json-api-shop/assets/js/app.633ebab6.js" defer></script><script src="/json-api-shop/assets/js/2.34cd2bf9.js" defer></script><script src="/json-api-shop/assets/js/13.a1a7c6db.js" defer></script>
   </body>
 </html>

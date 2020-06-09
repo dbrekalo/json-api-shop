@@ -4,6 +4,7 @@ const {Model, Collection} = require('json-api-resource');
 const MemoryAdapter = require('../adapters/memory');
 const ExpressServer = require('../servers/express');
 const resourceSchemaFactory = require('./resource-schema-factory');
+// const log = obj => console.log(JSON.stringify(obj, null, 4));
 
 let app;
 
@@ -232,7 +233,7 @@ describe('Express server', () => {
             .then(response => {
 
                 const error = response.body;
-                assert.equal(error.errors[0].detail, 'Article title is mandatory');
+                assert.equal(error.errors[0].detail, 'Field minimum length is 2');
 
             });
 
@@ -255,7 +256,7 @@ describe('Express server', () => {
             .then(response => {
 
                 const error = response.body;
-                assert.equal(error.errors[0].detail, 'Article title is mandatory');
+                assert.equal(error.errors[0].detail, 'Field minimum length is 2');
 
             });
 

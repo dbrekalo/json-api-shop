@@ -6,6 +6,17 @@ var randomBool = require('mout/random/randBool');
 module.exports = function() {
     return {
         article: {
+            fieldsSchema: ({action, context}) => ({
+                attributes: {
+                    title: {type: String, minLength: 2, required: action === 'create'},
+                    body: {type: String, default: ''},
+                    published: {type: Boolean, default: false}
+                },
+                relationships: {
+                    tags: {hasMany: 'tag', default: []},
+                    author: {hasOne: 'user', nullable: true, default: null}
+                }
+            }),
             filters: {
                 title: function(resource, filterValue) {
                     return contains(
@@ -16,33 +27,11 @@ module.exports = function() {
             },
             sorts: {
                 '-title': {
-                    attribute: 'title',
-                    sort: 'descending'
+                    field: 'title',
+                    order: 'descending'
                 }
-            },
-            getDefaultFields: function() {
-                return {
-                    attributes: {
-                        title: '',
-                        body: '',
-                        published: false
-                    },
-                    relationships: {
-                        author: {data: null},
-                        tags: {data: []}
-                    }
-                };
-            },
-            validate: function(params) {
-                var validator = params.validator;
-                var attributes = params.data.attributes;
-                if (attributes && attributes.title === '') {
-                    validator.addAttributeError('title', 'Article title is mandatory');
-                }
-                return validator.report();
             },
             dataset: function() {
-
                 return range(1, 9).map(function(index) {
                     return {
                         type: 'article',
@@ -66,12 +55,10 @@ module.exports = function() {
                         }
                     };
                 });
-
             }
         },
         tag: {
             dataset: range(1, 10).map(function(index) {
-
                 return {
                     type: 'tag',
                     id: String(index),
@@ -79,10 +66,20 @@ module.exports = function() {
                         title: 'Tag ' + index
                     }
                 };
-
             })
         },
         user: {
+            fieldsSchema: ({action}) => ({
+                attributes: {
+                    nickname: {type: String, default: ''},
+                    email: {type: String, email: true, required: action === 'create'}
+                }
+            }),
+            validate({validator, data}) {
+                return validator.validateFields(data, {
+                    messages: {email: {pattern: 'Invalid email format'}}
+                }).report();
+            },
             dataset: range(1, 5).map(function(index) {
                 return {
                     type: 'user',

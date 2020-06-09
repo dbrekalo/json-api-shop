@@ -21,7 +21,6 @@ const service = new ServiceApi({
 Constructor can be called with:
 - ```databaseAdapter```: database adapter instance or constructor function
 - ```resources```: resources schema
-- ```validationErrorField```: error field name where validation messages are written to (default ```'detail'```)
 - ```pagination```: pagination configuration
     - offset based (default) ```{strategy: 'offsetBased', offsetKey: 'offset', limitKey: 'limit'}```
     - page based ```{strategy: 'pageBased', numberKey: 'number', limitKey: 'size'}```

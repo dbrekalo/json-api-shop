@@ -4,10 +4,12 @@ var isEmpty = require('mout/lang/isEmpty');
 var contains = require('mout/array/contains');
 var merge = require('mout/object/merge');
 var pascalCase = require('to-pascal-case');
+var typeFactory = require('type-factory');
 var flatten = require('../lib/flatten');
 var pickObject = require('../lib/pick-object');
 var rejectUndefined = require('../lib/reject-undefined');
-var typeFactory = require('../lib/type-factory');
+var errorFactory = require('../lib/error-factory');
+var validateData = require('../lib/resource-validator');
 
 var BaseAdapter = typeFactory({
 
@@ -29,7 +31,6 @@ var BaseAdapter = typeFactory({
     getConfigDefaults: function() {
 
         return {
-            validationErrorField: 'detail',
             resources: {}
         };
 
@@ -40,7 +41,7 @@ var BaseAdapter = typeFactory({
         return this.callGetResource(
             params.type, params.id, params.query, params.context
         ).then(function(resource) {
-            return this.presentResource(
+            return this.renderResource(
                 resource, params.query, params.context
             );
         }.bind(this));
@@ -52,10 +53,27 @@ var BaseAdapter = typeFactory({
         return this.callQueryResourceCollection(
             params.type, params.query, params.context
         ).then(function(data) {
-            return this.presentResourceCollection(
-                data.resources, data.meta, params.query, params.context
+            return this.renderResourceCollection(
+                params.type, data.resources, data.meta, params.query, params.context
             );
         }.bind(this));
+
+    },
+
+    resolveFieldsSchema: function(type, action, context) {
+
+        var schema = this.config.resources[type];
+        var fieldsSchema = schema.fieldsSchema;
+
+        if (typeof fieldsSchema === 'function') {
+            return Promise.resolve(fieldsSchema({
+                action: action,
+                database: this,
+                context: context
+            }));
+        } else {
+            return Promise.resolve(fieldsSchema);
+        }
 
     },
 
@@ -65,38 +83,47 @@ var BaseAdapter = typeFactory({
         var schema = this.config.resources[type];
         var self = this;
 
-        return Promise.resolve(schema.getDefaultFields
-            ? schema.getDefaultFields({
-                database: self,
-                query: data.query,
-                context: data.context
-            })
-            : {attributes: {}, relationships: {}}
-        ).then(function(defaults) {
+        return this.resolveFieldsSchema(
+            type, 'create', data.context
+        ).then(function(fieldsSchema) {
+
+            var validator = self.createValidator({
+                fieldsSchema: fieldsSchema
+            });
+
+            var defaults = fieldsSchema
+                ? validator.extractFieldDefaults()
+                : {attributes: {}, relationships: {}};
 
             var resourceBlueprint = {
                 type: type,
                 attributes: rejectUndefined(merge(
-                    {}, defaults.attributes, data.attributes
+                    defaults.attributes, data.attributes
                 )),
                 relationships: rejectUndefined(merge(
-                    {}, defaults.relationships, data.relationships
+                    defaults.relationships, data.relationships
                 ))
             };
 
-            return Promise.resolve(schema.validate && schema.validate({
-                resource: resourceBlueprint,
-                data: data,
-                method: 'create',
+            var validate = schema.validate || function(params) {
+                if (fieldsSchema) {
+                    return validator.validateFields(params.data).report();
+                }
+            };
+
+            return Promise.resolve(validate({
+                data: resourceBlueprint,
+                rawData: data,
+                action: 'create',
                 database: self,
-                validator: self.createValidator(),
+                validator: validator,
                 context: data.context
             })).then(function() {
                 return self.callCreateResource(
                     type, resourceBlueprint, data.query, data.context
                 );
             }).then(function(resource) {
-                return self.presentResource(
+                return self.renderResource(
                     resource, data.query, data.context
                 );
             });
@@ -112,14 +139,34 @@ var BaseAdapter = typeFactory({
         var schema = this.config.resources[type];
         var self = this;
 
-        return this.callGetResource(type, id, data.query, data.context).then(function(resource) {
+        return Promise.all([
+            this.callGetResource(
+                type, id, data.query, data.context
+            ),
+            this.resolveFieldsSchema(
+                type, 'update', data.context
+            )
+        ]).then(function(result) {
 
-            return Promise.resolve(schema.validate && schema.validate({
-                validator: self.createValidator(),
-                resource: resource,
+            var resource = result[0];
+            var fieldsSchema = result[1];
+
+            var validator = self.createValidator({
+                fieldsSchema: fieldsSchema
+            });
+
+            var validate = schema.validate || function() {
+                if (fieldsSchema) {
+                    return validator.validateFields(data).report();
+                }
+            };
+
+            return Promise.resolve(validate({
                 data: data,
-                method: 'update',
+                resource: resource,
+                action: 'update',
                 database: self,
+                validator: validator,
                 context: data.context
             }));
 
@@ -128,7 +175,7 @@ var BaseAdapter = typeFactory({
                 type, id, data, data.query, data.context
             );
         }).then(function(resource) {
-            return self.presentResource(
+            return self.renderResource(
                 resource, data.query, data.context
             );
         });
@@ -233,30 +280,60 @@ var BaseAdapter = typeFactory({
 
     },
 
-    presentResource: function(resource, query, context) {
+    renderResource: function(resource, query, context) {
 
         query = query || {};
 
-        var resourceView = this.applySparseFields(
-            resource, query.fields, query, context
-        );
+        return this.callPresentResources(
+            resource.type, [resource], query, context
+        ).then(function(resources) {
 
-        return this.buildIncluded({
-            resources: [resourceView],
-            include: query.include,
-            fields: query.fields,
-            query: query,
-            context: context
-        }).then(function(included) {
-            return {
-                data: resourceView,
-                included: included
-            };
-        });
+            var resourceView = resources[0];
+
+            return this.buildIncluded({
+                resources: [resourceView],
+                include: query.include,
+                fields: query.fields,
+                query: query,
+                context: context
+            }).then(function(included) {
+                return {
+                    data: resourceView,
+                    included: included
+                };
+            });
+
+        }.bind(this));
 
     },
 
-    presentResourceCollection: function(resources, meta, query, context) {
+    renderResourceCollection: function(type, resources, meta, query, context) {
+
+        query = query || {};
+
+        return this.callPresentResources(
+            type, resources, query, context
+        ).then(function(resourceViews) {
+
+            return this.buildIncluded({
+                resources: resourceViews,
+                include: query.include,
+                fields: query.fields,
+                query: query,
+                context: context
+            }).then(function(included) {
+                return {
+                    data: resourceViews,
+                    included: included,
+                    meta: meta
+                };
+            });
+
+        }.bind(this));
+
+    },
+
+    presentResources: function(type, resources, query, context) {
 
         query = query || {};
 
@@ -266,19 +343,16 @@ var BaseAdapter = typeFactory({
             );
         }.bind(this));
 
-        return this.buildIncluded({
-            resources: resourceViews,
-            include: query.include,
-            fields: query.fields,
-            query: query,
-            context: context
-        }).then(function(included) {
-            return {
-                data: resourceViews,
-                included: included,
-                meta: meta
-            };
-        });
+        return Promise.resolve(resourceViews);
+
+    },
+
+    callPresentResources: function(type, resources, query, context) {
+
+        var method = 'present' + pascalCase(type) + 'Resources';
+        return this[method]
+            ? this[method](resources, query, context)
+            : this.presentResources(type, resources, query, context);
 
     },
 
@@ -361,13 +435,13 @@ var BaseAdapter = typeFactory({
             keys(wantedResources).map(function(type) {
                 return self.callGetResourceCollection(
                     type, wantedResources[type], query, context
-                );
+                ).then(function(resources) {
+                    return self.callPresentResources(type, resources, query, context);
+                });
             })
         ).then(function(items) {
 
-            var resources = flatten(items).map(function(resource) {
-                return self.applySparseFields(resource, fields);
-            });
+            var resources = flatten(items);
 
             var filteredInclude = useIncludePaths ? include.map(function(relationName) {
                 return relationName.split('.')[1];
@@ -389,38 +463,88 @@ var BaseAdapter = typeFactory({
 
     },
 
-    createError: function(errorType, message) {
+    createValidator: function(params) {
 
-        var error = new Error(message);
-        error.jsonApiErrorType = errorType;
-        return error;
+        params = params || {};
 
-    },
+        var fieldsSchema = params.fieldsSchema;
+        var error = errorFactory.validationError();
 
-    createValidator: function() {
+        error.validateFields = function(data, overrides) {
 
-        var messageField = this.config.validationErrorField || 'detail';
-        var error = this.createError('validationError', 'Validation error');
-        var errors = error.errors = [];
+            overrides = overrides || {};
 
-        var addFieldMessage = function(domain, field, message) {
-            var pointer = '/data/' + domain + '/' + field;
-            var errorMessage = {source: {pointer: pointer}};
-            errorMessage[messageField] = message;
-            errors.push(errorMessage);
+            function validateAttributes() {
+
+                var result = validateData(fieldsSchema.attributes || {}, data.attributes || {}, {
+                    messages: overrides.messages && overrides.messages.attributes,
+                    assignDefaults: false
+                });
+
+                result.errors.forEach(function(item) {
+                    error.addAttributeError(item.field, item.message);
+                });
+
+            }
+
+            function validateRelationships() {
+
+                var relationshipsUnpacked = Object.keys(
+                    data.relationships || {}
+                ).reduce(function(acc, relationName) {
+                    acc[relationName] = data.relationships[relationName].data;
+                    return acc;
+                }, {});
+
+                var result = validateData(fieldsSchema.relationships || {}, relationshipsUnpacked, {
+                    messages: overrides.messages && overrides.messages.relationships,
+                    assignDefaults: false
+                });
+
+                result.errors.forEach(function(item) {
+                    error.addRelationshipError(item.field, item.message);
+                });
+
+            }
+
+            if (fieldsSchema) {
+                validateAttributes();
+                validateRelationships();
+            } else {
+                error.addError('Fields schema not defined');
+            }
+
             return error;
+
         };
 
-        error.addAttributeError = function(attribute, message) {
-            return addFieldMessage('attributes', attribute, message);
+        error.extractFieldDefaults = function() {
+
+            var defaultAttributes = validateData.extractDefaults(
+                fieldsSchema.attributes || {}
+            );
+
+            var defaultRelationshipsPacked = validateData.extractDefaults(
+                fieldsSchema.relationships || {}
+            );
+
+            var defaultRelationships = Object.keys(
+                defaultRelationshipsPacked
+            ).reduce(function(acc, relationName) {
+                acc[relationName] = {
+                    data: defaultRelationshipsPacked[relationName]
+                };
+                return acc;
+            }, {});
+
+            return {
+                attributes: defaultAttributes,
+                relationships: defaultRelationships
+            };
+
         };
 
-        error.addRelationshipError = function(relationship, message) {
-            return addFieldMessage('relationships', relationship, message);
-        };
-        error.report = function() {
-            return errors.length ? Promise.reject(error) : Promise.resolve();
-        };
+        error.validateData = validateData;
 
         return error;
 

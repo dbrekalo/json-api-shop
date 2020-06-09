@@ -3,6 +3,7 @@ var values = require('mout/object/values');
 var merge = require('mout/object/merge');
 var deepClone = require('mout/lang/deepClone');
 var rejectUndefined = require('../lib/reject-undefined');
+var errorFactory = require('../lib/error-factory');
 var BaseAdapter = require('./base');
 
 var MemoryAdapter = BaseAdapter.extend({
@@ -63,12 +64,11 @@ var MemoryAdapter = BaseAdapter.extend({
 
             var resource = resources[id.toString()];
 
-            return resource ? resource : Promise.reject(this.createError(
-                'resourceNotFound',
+            return resource ? resource : errorFactory.resourceNotFound().addError(
                 'Cannot find resource "' + type + '" with id "' + id + '"'
-            ));
+            ).report();
 
-        }.bind(this));
+        });
 
     },
 
@@ -101,12 +101,11 @@ var MemoryAdapter = BaseAdapter.extend({
                 }
             });
 
-            return missingResources.length ? Promise.reject(this.createError(
-                'resourceNotFound',
+            return missingResources.length ? errorFactory.resourceNotFound().addError(
                 'Cannot find resources of type "' + type + '" with references "' + missingResources.join(', ') + '"'
-            )) : foundResources;
+            ).report() : foundResources;
 
-        }.bind(this));
+        });
 
     },
 
@@ -156,11 +155,16 @@ var MemoryAdapter = BaseAdapter.extend({
                         resources.sort(schemaSort);
                     } else {
                         resources.sort(function(resourceA, resourceB) {
-                            var attributeName = schemaSort.attribute;
+                            var fieldName = schemaSort.field;
+                            var fieldIsId = fieldName === 'id';
                             var isAscending = schemaSort.order === 'ascending';
-                            var attributeA = resourceA.attributes[attributeName];
-                            var attributeB = resourceB.attributes[attributeName];
-                            return attributeA > attributeB
+                            var fieldA = fieldIsId
+                                ? resourceA.id
+                                : resourceA.attributes[fieldName];
+                            var fieldB = fieldIsId
+                                ? resourceB.id
+                                : resourceB.attributes[fieldName];
+                            return fieldA > fieldB
                                 ? (isAscending ? 1 : -1)
                                 : (isAscending ? -1 : 1);
                         });
@@ -199,7 +203,11 @@ var MemoryAdapter = BaseAdapter.extend({
                 relationships: merge({}, data.relationships)
             };
             dataset[type][id.toString()] = resource;
-            return this.persistToStorage(this.dataset).then(function() {
+            return this.persistToStorage({
+                action: 'create',
+                resource: resource,
+                dataset: this.dataset
+            }).then(function() {
                 return copyResource(resource);
             });
         }.bind(this));
@@ -227,7 +235,11 @@ var MemoryAdapter = BaseAdapter.extend({
                 );
             }
 
-            return this.persistToStorage(this.dataset).then(function() {
+            return this.persistToStorage({
+                action: 'update',
+                resource: resource,
+                dataset: this.dataset
+            }).then(function() {
                 return copyResource(resource);
             });
 
@@ -241,7 +253,7 @@ var MemoryAdapter = BaseAdapter.extend({
 
         return this.getRawResource(
             type, id, query, context
-        ).then(function() {
+        ).then(function(resource) {
 
             // remove from dataset
             delete dataset[type][id.toString()];
@@ -270,7 +282,11 @@ var MemoryAdapter = BaseAdapter.extend({
                 });
             });
 
-            return this.persistToStorage(this.dataset).then(function() {
+            return this.persistToStorage({
+                action: 'delete',
+                resource: resource,
+                dataset: this.dataset
+            }).then(function() {
                 return '';
             });
 
@@ -288,7 +304,7 @@ var MemoryAdapter = BaseAdapter.extend({
 
     },
 
-    persistToStorage: function(dataset) {
+    persistToStorage: function() {
 
         return Promise.resolve();
 

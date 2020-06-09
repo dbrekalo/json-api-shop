@@ -2,9 +2,8 @@ var forOwn = require('mout/object/forOwn');
 var keys = require('mout/object/keys');
 var express = require('express');
 var bodyParser = require('body-parser');
-var multer = require('multer');
 var cors = require('cors');
-var typeFactory = require('../lib/type-factory');
+var typeFactory = require('type-factory');
 var ServiceApi = require('../service');
 var pickObject = require('../lib/pick-object');
 
@@ -77,7 +76,6 @@ module.exports = typeFactory({
 
         app.use(bodyParser.json({type: 'application/*+json'}));
         app.use(bodyParser.urlencoded({extended: true}));
-        app.use(multer({storage: multer.memoryStorage()}).any());
 
         if (this.config.useCors) {
             app.use(cors());

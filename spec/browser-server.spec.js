@@ -4,9 +4,11 @@ const BrowserServer = require('../servers/browser');
 const assert = require('chai').assert;
 const axiosLib = require('axios');
 const {Model, Collection} = require('json-api-resource');
+// const log = obj => console.log(JSON.stringify(obj, null, 4));
 
 const url = path => window.location.href + '/api' + path;
 const axios = axiosLib.create({baseURL: url('')});
+
 let server;
 
 beforeEach(function() {
@@ -236,11 +238,9 @@ describe('Browser server', () => {
                 }
             })
             .catch(error => {
-
                 assert.equal(error.response.status, 409);
-                assert.equal(error.response.data.errors[0].detail, 'Article title is mandatory');
+                assert.equal(error.response.data.errors[0].detail, 'Field minimum length is 2');
                 done();
-
             });
 
     });
@@ -259,7 +259,7 @@ describe('Browser server', () => {
             .catch(error => {
 
                 assert.equal(error.response.status, 409);
-                assert.equal(error.response.data.errors[0].detail, 'Article title is mandatory');
+                assert.equal(error.response.data.errors[0].detail, 'Field minimum length is 2');
                 done();
 
             });

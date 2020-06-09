@@ -12,62 +12,69 @@ const schema = {
     user: {}
 };
 ```
-
-## Default fields
-Default fields (attributes and relationships) to be merged with client payload fields when resource is created.
-
-### getDefaultFields
-```Function``` returning ```Object``` or ```Promise``` resolved with default attributes and relationships.
-Method is called with parameters:
-- ```database```: current database instance
-- ```context```: current running context (request in server implementations)
-- ```query```: request query
-
+## Fields schema
+List of resource fields (attributes and relationships) with expected value types and rules.
+This schema is used for data validation when resource is created or updated.
 ```js
 const schema = {
     article: {
-        getDefaultFields({database, context}) {
-            return {
-                attributes: {
-                    title: '',
-                    published: false
-                },
-                relationships: {
-                    author: {data: null},
-                    tags: {data: []}
-                }
+        fieldsSchema: ({action, context}) => ({
+            attributes: {
+                title: {type: String, minLength: 2, required: action === 'create'},
+                body: {type: String, default: ''},
+                published: {type: Boolean, default: false}
+            },
+            relationships: {
+                tags: {hasMany: 'tag', default: []},
+                author: {hasOne: 'user', nullable: true, default: null}
             }
-        }
+        })
     }
 };
 ```
+All rules available in [validateTypes](https://dbrekalo.github.io/validate-types/) library can be used in schema.
 
 ## Validation
 Attributes and relationships from client request can be validated when resource is created or updated.
+By default input data is validated using rules from field schema if one is defined.
+
+Validation can be extended by defining validate function on schema:
+```js
+const schema = {
+    user: {
+        fieldsSchema: ({action}) => ({
+            attributes: {
+                nickname: {type: String, default: ''},
+                email: {type: String, email: true, required: action === 'create'}
+            }
+        }),
+        validate({validator, data}) {
+            return validator.validateFields(data, {
+                messages: {email: {pattern: 'Invalid email format'}}
+            }).report();
+        }
+    }
+}
+````
 
 ### validate
 ```Function``` returning ```Promise``` successfully resolved or rejected with validation errors.
 Method is called with parameters:
 - ```data```: attributes and relationships payload from client request
 - ```method```: ```"update"``` or ```"create"``` string
-- ```resource```: current database resource on edit, client payload merged with default fields on create
+- ```resource```: current database resource on update action
 - ```database```: current database instance
 - ```context```: current running context (request in server implementations)
 - ```validator```: helper object to generate json api formatted errors.
-    - Use ```addAttributeError``` and ```addRelationshipError``` methods to add errors. ```report``` method will
+    - Use ```addAttributeError``` and ```addRelationshipError``` methods to add errors. ```validateFields``` will validate data using fields schma. ```report``` method will
 return rejected promise if errors were added or resolved promise if there were none.
+
+### errors message field
+By default error messages are written to error detail field. If needed this can be configured:
 ```js
-const schema = {
-    article: {
-        validate({data, validator}) {
-            if (data.attributes?.title === '') {
-                validator.addAttributeError('title', 'Article title is mandatory');
-            }
-            return validator.report();
-        }
-    }
-};
-```
+const errorFactory = require('json-api-shop/lib/error-factory');
+errorFactory.setMessageField('title');
+````
 
 ## Dataset
 List of resources to seed database with.
@@ -113,7 +120,7 @@ Used with in-memory database adapters and its derivatives
 :::
 
 ### filters
-List (```Object```) of supported ```Function``` filter functions. Functions are called with parameters:
+List of supported ```Function``` filter functions. Functions are called with parameters:
 - ```resource```: database resource ```Object```
 - ```filterValue```: filter query ```String```
 ```js
@@ -137,15 +144,15 @@ Used with in-memory database adapters and its derivatives
 :::
 
 ### sorts
-List (```Object```) of supported ```Function``` sort functions or ```Object``` shortcuts like in example bellow:
+List of supported ```Function``` sort functions or ```Object``` shortcuts like in example bellow:
 
 ```js
 const schema = {
     article: {
         sorts: {
             '-title': {
-                attribute: 'title',
-                sort: 'descending'
+                field: 'title',
+                order: 'descending'
             }
         }
     }

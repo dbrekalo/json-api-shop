@@ -38,10 +38,11 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mout": "^1.2.2",
-    "multer": "^1.4.2",
     "pretender": "^3.4.1",
     "qs": "^6.9.4",
-    "to-pascal-case": "^1.0.0"
+    "to-pascal-case": "^1.0.0",
+    "type-factory": "^3.1.0",
+    "validate-types": "^2.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -52,7 +53,7 @@
     "chai": "^4.2.0",
     "eslint": "^6.8.0",
     "eslint-plugin-standard": "^4.0.0",
-    "json-api-resource": "^0.7.0",
+    "json-api-resource": "^0.8.0",
     "karma": "^5.0.4",
     "karma-chrome-launcher": "^3.1.0",
     "karma-coverage": "^2.0.2",
