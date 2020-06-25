@@ -1,6 +1,6 @@
 {
   "name": "json-api-shop",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Javascript based tools for building applications based on json:api specification and conventions",
   "homepage": "https://dbrekalo.github.io/json-api-shop/",
   "repository": {
