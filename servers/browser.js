@@ -303,7 +303,9 @@ module.exports = typeFactory({
                 } else if (errorType === 'badRequest') {
                     response.status(400).send(error.message);
                 } else if (errorType === 'validationError') {
-                    response.status(validationErrorStatus).json(error);
+                    response.status(validationErrorStatus).json({
+                        errors: error.errors
+                    });
                 } else {
                     next(error);
                 }

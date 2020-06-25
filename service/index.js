@@ -160,7 +160,9 @@ var ServiceApi = typeFactory({
         var typeofId = typeof input.id;
         var validator = this.createInputValidator();
 
-        if (typeofId !== 'string' && typeofId !== 'number') {
+        if (typeofId !== 'string') {
+            validator.addError('Resource id is not string');
+        } else if (input.id === '') {
             validator.addError('Resource id not provided');
         }
 

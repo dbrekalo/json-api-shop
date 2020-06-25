@@ -50,7 +50,7 @@ const schema = {
         }),
         validate({validator, data}) {
             return validator.validateFields(data, {
-                messages: {email: {pattern: 'Invalid email format'}}
+                messages: {email: {required: 'Email is required'}}
             }).report();
         }
     }

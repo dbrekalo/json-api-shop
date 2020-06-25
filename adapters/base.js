@@ -72,7 +72,7 @@ var BaseAdapter = typeFactory({
                 context: context
             }));
         } else {
-            return Promise.resolve(fieldsSchema);
+            return Promise.resolve();
         }
 
     },
@@ -297,10 +297,11 @@ var BaseAdapter = typeFactory({
                 query: query,
                 context: context
             }).then(function(included) {
-                return {
-                    data: resourceView,
-                    included: included
-                };
+                var response = {data: resourceView};
+                if (included.length) {
+                    response.included = included;
+                }
+                return response;
             });
 
         }.bind(this));
@@ -322,11 +323,14 @@ var BaseAdapter = typeFactory({
                 query: query,
                 context: context
             }).then(function(included) {
-                return {
-                    data: resourceViews,
-                    included: included,
-                    meta: meta
-                };
+                var response = {data: resourceViews};
+                if (included.length) {
+                    response.included = included;
+                }
+                if (meta) {
+                    response.meta = meta;
+                }
+                return response;
             });
 
         }.bind(this));
@@ -337,7 +341,15 @@ var BaseAdapter = typeFactory({
 
         query = query || {};
 
+        var trimObject = function(obj, key) {
+            if (obj[key] && Object.keys(obj[key]).length === 0) {
+                delete obj[key];
+            }
+        };
+
         var resourceViews = resources.map(function(resource) {
+            trimObject(resource, 'attributes');
+            trimObject(resource, 'relationships');
             return this.applySparseFields(
                 resource, query.fields, query, context
             );

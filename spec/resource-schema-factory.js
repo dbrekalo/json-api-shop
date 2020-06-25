@@ -73,6 +73,9 @@ module.exports = function() {
                 attributes: {
                     nickname: {type: String, default: ''},
                     email: {type: String, email: true, required: action === 'create'}
+                },
+                relationships: {
+                    boss: {hasOne: 'user', nullable: false, required: action === 'create'}
                 }
             }),
             validate({validator, data}) {

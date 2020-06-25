@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Resource schema | JSON api shop</title>
-    <meta name="generator" content="VuePress 1.5.0">
+    <meta name="generator" content="VuePress 1.5.2">
     
     <meta name="description" content="JSON api servers, services and database adapters">
-    <link rel="preload" href="/json-api-shop/assets/css/0.styles.717afe66.css" as="style"><link rel="preload" href="/json-api-shop/assets/js/app.633ebab6.js" as="script"><link rel="preload" href="/json-api-shop/assets/js/2.34cd2bf9.js" as="script"><link rel="preload" href="/json-api-shop/assets/js/12.44f879a1.js" as="script"><link rel="prefetch" href="/json-api-shop/assets/js/10.9964d219.js"><link rel="prefetch" href="/json-api-shop/assets/js/11.64bf697b.js"><link rel="prefetch" href="/json-api-shop/assets/js/13.a1a7c6db.js"><link rel="prefetch" href="/json-api-shop/assets/js/3.b4a332dc.js"><link rel="prefetch" href="/json-api-shop/assets/js/4.87ca859a.js"><link rel="prefetch" href="/json-api-shop/assets/js/5.2f1b41f0.js"><link rel="prefetch" href="/json-api-shop/assets/js/6.fa8cf335.js"><link rel="prefetch" href="/json-api-shop/assets/js/7.6f8d9a9c.js"><link rel="prefetch" href="/json-api-shop/assets/js/8.751754f6.js"><link rel="prefetch" href="/json-api-shop/assets/js/9.f643b181.js">
-    <link rel="stylesheet" href="/json-api-shop/assets/css/0.styles.717afe66.css">
+    <link rel="preload" href="/json-api-shop/assets/css/0.styles.b0d3e125.css" as="style"><link rel="preload" href="/json-api-shop/assets/js/app.41e9f162.js" as="script"><link rel="preload" href="/json-api-shop/assets/js/2.426982cb.js" as="script"><link rel="preload" href="/json-api-shop/assets/js/12.0ab1fd08.js" as="script"><link rel="prefetch" href="/json-api-shop/assets/js/10.74e05f8f.js"><link rel="prefetch" href="/json-api-shop/assets/js/11.fa5f4c3b.js"><link rel="prefetch" href="/json-api-shop/assets/js/13.eca1da1c.js"><link rel="prefetch" href="/json-api-shop/assets/js/3.eed2250b.js"><link rel="prefetch" href="/json-api-shop/assets/js/4.20604ee5.js"><link rel="prefetch" href="/json-api-shop/assets/js/5.8abf2eed.js"><link rel="prefetch" href="/json-api-shop/assets/js/6.0b6df98d.js"><link rel="prefetch" href="/json-api-shop/assets/js/7.ce3c6d4b.js"><link rel="prefetch" href="/json-api-shop/assets/js/8.8641034e.js"><link rel="prefetch" href="/json-api-shop/assets/js/9.26826942.js">
+    <link rel="stylesheet" href="/json-api-shop/assets/css/0.styles.b0d3e125.css">
   </head>
   <body>
     <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/json-api-shop/" class="home-link router-link-active"><!----> <span class="site-name">JSON api shop</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/json-api-shop/about.html" class="nav-link">
@@ -53,7 +53,7 @@ By default input data is validated using rules from field schema if one is defin
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
         <span class="token function">validate</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span>validator<span class="token punctuation">,</span> data<span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">return</span> validator<span class="token punctuation">.</span><span class="token function">validateFields</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-                messages<span class="token operator">:</span> <span class="token punctuation">{</span>email<span class="token operator">:</span> <span class="token punctuation">{</span>pattern<span class="token operator">:</span> <span class="token string">'Invalid email format'</span><span class="token punctuation">}</span><span class="token punctuation">}</span>
+                messages<span class="token operator">:</span> <span class="token punctuation">{</span>email<span class="token operator">:</span> <span class="token punctuation">{</span>required<span class="token operator">:</span> <span class="token string">'Email is required'</span><span class="token punctuation">}</span><span class="token punctuation">}</span>
             <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">report</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
@@ -116,6 +116,6 @@ errorFactory<span class="token punctuation">.</span><span class="token function"
       </a>
       →
     </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/json-api-shop/assets/js/app.633ebab6.js" defer></script><script src="/json-api-shop/assets/js/2.34cd2bf9.js" defer></script><script src="/json-api-shop/assets/js/12.44f879a1.js" defer></script>
+    <script src="/json-api-shop/assets/js/app.41e9f162.js" defer></script><script src="/json-api-shop/assets/js/2.426982cb.js" defer></script><script src="/json-api-shop/assets/js/12.0ab1fd08.js" defer></script>
   </body>
 </html>

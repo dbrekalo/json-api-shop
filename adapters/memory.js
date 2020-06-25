@@ -1,6 +1,7 @@
 var forOwn = require('mout/object/forOwn');
 var values = require('mout/object/values');
 var merge = require('mout/object/merge');
+var pluck = require('mout/array/pluck');
 var deepClone = require('mout/lang/deepClone');
 var rejectUndefined = require('../lib/reject-undefined');
 var errorFactory = require('../lib/error-factory');
@@ -40,6 +41,12 @@ var MemoryAdapter = BaseAdapter.extend({
 
     },
 
+    getResourceDataset: function(type, query, context) {
+
+        return Promise.resolve(this.dataset[type]);
+
+    },
+
     getResource: function(type, id, query, context) {
 
         var copyResource = this.copyResource;
@@ -47,12 +54,6 @@ var MemoryAdapter = BaseAdapter.extend({
         return this.getRawResource(
             type, id, query, context
         ).then(copyResource);
-
-    },
-
-    getResourceDataset: function(type, query, context) {
-
-        return Promise.resolve(this.dataset[type]);
 
     },
 
@@ -196,13 +197,21 @@ var MemoryAdapter = BaseAdapter.extend({
         var copyResource = this.copyResource;
 
         return this.getNewResourceId(type).then(function(id) {
-            var resource = {
+
+            return {
                 id: id,
                 type: type,
                 attributes: merge({}, data.attributes),
                 relationships: merge({}, data.relationships)
             };
-            dataset[type][id.toString()] = resource;
+
+        }).then(function(resource) {
+
+            return this.validateRelationshipReferences(resource);
+
+        }.bind(this)).then(function(resource) {
+
+            dataset[type][resource.id] = resource;
             return this.persistToStorage({
                 action: 'create',
                 resource: resource,
@@ -210,6 +219,7 @@ var MemoryAdapter = BaseAdapter.extend({
             }).then(function() {
                 return copyResource(resource);
             });
+
         }.bind(this));
 
     },
@@ -234,6 +244,14 @@ var MemoryAdapter = BaseAdapter.extend({
                     rejectUndefined(data.relationships)
                 );
             }
+
+            return resource;
+
+        }).then(function(resource) {
+
+            return this.validateRelationshipReferences(resource);
+
+        }.bind(this)).then(function(resource) {
 
             return this.persistToStorage({
                 action: 'update',
@@ -300,7 +318,53 @@ var MemoryAdapter = BaseAdapter.extend({
             return parseInt(resource.id, 10);
         });
 
-        return Promise.resolve(Math.max.apply(null, currentIds) + 1);
+        return Promise.resolve(String(currentIds.length
+            ? Math.max.apply(null, currentIds) + 1
+            : 1
+        ));
+
+    },
+
+    validateRelationshipReferences: function(resource) {
+
+        var self = this;
+        var errors = errorFactory.validationError();
+
+        var refs = Object.keys(
+            resource.relationships
+        ).reduce(function(acc, relationName) {
+            var relation = resource.relationships[relationName];
+            if (Array.isArray(relation.data)) {
+                relation.data.length && acc.push({
+                    relationName: relationName,
+                    type: relation.data[0].type,
+                    idReferences: pluck(relation.data, 'id')
+                });
+            } else if (relation.data) {
+                acc.push({
+                    relationName: relationName,
+                    type: relation.data.type,
+                    idReferences: [relation.data.id]
+                });
+            }
+            return acc;
+        }, []);
+
+        return Promise.all(refs.map(function(item) {
+
+            return self.getRawResourceCollection(
+                item.type, item.idReferences
+            ).catch(function() {
+                errors.addRelationshipError(
+                    item.relationName, 'Invalid related resource'
+                );
+            });
+
+        })).then(function() {
+            return errors.report();
+        }).then(function() {
+            return resource;
+        });
 
     },
 

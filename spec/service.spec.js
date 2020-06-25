@@ -368,8 +368,8 @@ describe('JSON API Service ', () => {
             type: 'article',
             id: '1',
             relationships: {
-                author: {data: []},
-                tags: {data: null}
+                author: {data: []}, // should be one to one
+                tags: {data: null} // should be one to many
             }
         }).catch(error => {
             assert.equal(error.errors[0].detail, 'Relationship not valid');
@@ -394,7 +394,36 @@ describe('JSON API Service ', () => {
 
     });
 
-    it('returns validation error on invalid create', done => {
+    it('returns validation error on invalid update (4)', done => {
+
+        service.update({
+            type: 'article',
+            id: '1',
+            relationships: {
+                author: {data: {id: 'notFound', type: 'user'}},
+                tags: {data: [{id: 'notFound', type: 'tag'}]}
+            }
+        }).catch(error => {
+            assert.equal(error.errors.length, 2);
+            assert.equal(error.errors[0].detail, 'Invalid related resource');
+            assert.equal(error.errors[1].detail, 'Invalid related resource');
+            done();
+        });
+
+    });
+
+    it('returns validation error on invalid create (1)', done => {
+
+        service.create({
+            type: 'article',
+        }).catch(error => {
+            assert.equal(error.errors[0].detail, 'Field is required');
+            done();
+        });
+
+    });
+
+    it('returns validation error on invalid create (2)', done => {
 
         service.create({
             type: 'article',
@@ -405,6 +434,29 @@ describe('JSON API Service ', () => {
         }).catch(error => {
             assert.equal(error.errors[0].detail, 'Field minimum length is 2');
             assert.equal(error.errors[1].detail, 'Invalid field type');
+            done();
+        });
+
+    });
+
+    it('returns validation error on invalid create (3)', done => {
+
+        service.create({
+            type: 'article',
+            attributes: {
+                title: 'New article title'
+            },
+            relationships: {
+                author: {data: {id: 'notFound', type: 'user'}}
+            }
+        }).catch(error => {
+            assert.deepEqual(error.errors[0], {
+                source: {
+                    pointer: '/data/relationships/author'
+                },
+                code: 'validationError',
+                detail: 'Invalid related resource'
+            });
             done();
         });
 
