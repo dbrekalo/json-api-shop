@@ -348,11 +348,12 @@ var BaseAdapter = typeFactory({
         };
 
         var resourceViews = resources.map(function(resource) {
-            trimObject(resource, 'attributes');
-            trimObject(resource, 'relationships');
-            return this.applySparseFields(
+            var sparseResource = this.applySparseFields(
                 resource, query.fields, query, context
             );
+            trimObject(sparseResource, 'attributes');
+            trimObject(sparseResource, 'relationships');
+            return sparseResource;
         }.bind(this));
 
         return Promise.resolve(resourceViews);
