@@ -331,7 +331,7 @@ var MemoryAdapter = BaseAdapter.extend({
         var errors = errorFactory.validationError();
 
         var refs = Object.keys(
-            resource.relationships
+            resource.relationships || {}
         ).reduce(function(acc, relationName) {
             var relation = resource.relationships[relationName];
             if (Array.isArray(relation.data)) {
