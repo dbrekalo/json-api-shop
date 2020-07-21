@@ -42,7 +42,7 @@
     "qs": "^6.9.4",
     "to-pascal-case": "^1.0.0",
     "type-factory": "^3.1.0",
-    "validate-types": "^2.2.1"
+    "validate-types": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

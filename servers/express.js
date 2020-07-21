@@ -74,11 +74,13 @@ module.exports = typeFactory({
 
     setupMiddleware: function(app) {
 
-        app.use(bodyParser.json({type: 'application/*+json'}));
-        app.use(bodyParser.urlencoded({extended: true}));
+        var baseUrl = this.config.baseUrl;
+
+        app.use(baseUrl, bodyParser.json({type: 'application/*+json'}));
+        app.use(baseUrl, bodyParser.urlencoded({extended: true}));
 
         if (this.config.useCors) {
-            app.use(cors());
+            app.use(baseUrl, cors());
         }
 
         return this;
