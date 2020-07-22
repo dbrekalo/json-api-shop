@@ -59,8 +59,9 @@ module.exports = typeFactory({
             pretender: pretender
         };
 
-        var buildResponse = function(resolve) {
+        var buildResponse = function(request, resolve) {
             return {
+                request: request,
                 _status: 200,
                 _headers: {
                     'Content-Type': 'text/html'
@@ -78,11 +79,15 @@ module.exports = typeFactory({
                     this.send(data);
                 },
                 send: function(data) {
-                    resolve([
+                    var output = [
                         this._status,
                         this._headers,
                         JSON.stringify(data)
-                    ]);
+                    ];
+                    if (config.logResponse) {
+                        console.log('response:' + this.request.method + ':' + this.request.url, data, this.request);
+                    }
+                    resolve(output);
                 }
             };
         };
@@ -92,6 +97,9 @@ module.exports = typeFactory({
                 qs.stringify(request.queryParams)
             );
             request.body = JSON.parse(request.requestBody);
+            if (config.logRequest) {
+                console.log('request:' + request.method + ':' + request.url, request);
+            }
             return request;
         };
 
@@ -102,8 +110,9 @@ module.exports = typeFactory({
 
                     return new Promise(function(resolve, reject) {
 
-                        var response = buildResponse(resolve);
                         var request = buildRequest(dirtyRequest);
+                        var response = buildResponse(request, resolve);
+
                         routeHandler(request, response, function(error) {
                             errorHandler(error, request, response, function(error) {
                                 response.status(500).send(error.message || '');
@@ -116,21 +125,6 @@ module.exports = typeFactory({
             };
 
         });
-
-        if (config.logRequest) {
-            pretender.on('request', function(request) {
-                console.log(
-                    decodeURIComponent(request.url),
-                    request.requestBody
-                );
-            });
-        }
-
-        if (config.logResponse) {
-            pretender.on('response', function(response) {
-                console.log(response);
-            });
-        }
 
         return app;
 
