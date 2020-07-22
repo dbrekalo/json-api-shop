@@ -96,7 +96,10 @@ module.exports = typeFactory({
             request.query = qs.parse(
                 qs.stringify(request.queryParams)
             );
-            request.body = JSON.parse(request.requestBody);
+            request.body = JSON.parse(request.requestBody instanceof window.FormData
+                ? request.requestBody.get('data')
+                : request.requestBody
+            );
             if (config.logRequest) {
                 console.log('request:' + request.method + ':' + request.url, request);
             }
